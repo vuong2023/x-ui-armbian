@@ -13,13 +13,13 @@ cur_dir=$(pwd)
 # check os
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
-elif cat /etc/issue | grep -Eqi "debian"; then
+elif cat /etc/issue | grep -Eqi "armbian"; then
     release="debian"
 elif cat /etc/issue | grep -Eqi "ubuntu"; then
     release="ubuntu"
 elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
-elif cat /proc/version | grep -Eqi "debian"; then
+elif cat /proc/version | grep -Eqi "armbian"; then
     release="debian"
 elif cat /proc/version | grep -Eqi "ubuntu"; then
     release="ubuntu"
@@ -67,7 +67,7 @@ elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
         echo -e "${red}Please use Ubuntu 16 or higher!${plain}\n" && exit 1
     fi
-elif [[ x"${release}" == x"debian" ]]; then
+elif [[ x"${release}" == x"armbian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
         echo -e "${red}Please use Debian 8 or higher!${plain}\n" && exit 1
     fi
