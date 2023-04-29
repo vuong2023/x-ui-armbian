@@ -35,13 +35,13 @@ function LOGI() {
 # check os
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
-elif cat /etc/issue | grep -Eqi "debian"; then
+elif cat /etc/issue | grep -Eqi "armbian"; then
     release="debian"
 elif cat /etc/issue | grep -Eqi "ubuntu"; then
     release="ubuntu"
 elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
-elif cat /proc/version | grep -Eqi "debian"; then
+elif cat /proc/version | grep -Eqi "armbian"; then
     release="debian"
 elif cat /proc/version | grep -Eqi "ubuntu"; then
     release="ubuntu"
@@ -69,7 +69,7 @@ elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
         LOGE "请使用 Ubuntu 16 或更高版本的系统！\n" && exit 1
     fi
-elif [[ x"${release}" == x"debian" ]]; then
+elif [[ x"${release}" == x"armbian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
         LOGE "请使用 Debian 8 或更高版本的系统！\n" && exit 1
     fi
@@ -106,7 +106,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/sing-web/x-ui/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/vuong2023/x-ui-armbian/master/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -125,7 +125,7 @@ update() {
         fi
         return 0
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/sing-web/x-ui/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/vuong2023/x-ui-armbian/master/install.sh)
     if [[ $? == 0 ]]; then
         LOGI "The update is complete and the panel has been automatically restarted"
         exit 0
@@ -309,7 +309,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/sing-web/x-ui/raw/master/x-ui.sh
+    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/vuong2023/x-ui-armbian/raw/master/x-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "Download script failed, please check if you can connect to Github on your local machine"
